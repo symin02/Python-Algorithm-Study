@@ -10,8 +10,8 @@
 ## 👨‍💻 스터디 멤버
 | 이름 | GitHub Profile |
 | :---: | :---: |
-| 내 이름 | [@symin02](https://github.com/symin02) |
-| 스터디원 | [@github_id](https://github.com/github_id) |
+| 민선영 | [@symin02](https://github.com/symin02) |
+| 최이초 | [@yichoya](https://github.com/yichoya) |
 
 ## 🗂 파일 및 폴더 구조
 개인 이름 폴더 아래에 주차별, 혹은 플랫폼별로 폴더를 나누어 관리합니다.
