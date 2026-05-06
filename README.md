@@ -14,8 +14,8 @@
 | 최이초 | [@yichoya](https://github.com/yichoya) |
 | 이유주 | [@xxxyuju](https://github.com/xxxyuju) |
 | 김수민 | [@min12530](https://github.com/min12530) |
-| 박준영 |
-| 한승연|
+| 박준영 | [@junyoung0204] (https://github.com/junyoung0204) |
+| 한승연 | [@3eungyeon] (https://github.com/3eungyeon) |
 
 ## 🗂 파일 및 폴더 구조
 개인 이름 폴더 아래에 주차별, 혹은 플랫폼별로 폴더를 나누어 관리합니다.
