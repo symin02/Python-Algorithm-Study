@@ -1,0 +1,15 @@
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        target="aeiouAEIOU"
+        result=""
+        tmp=""
+        for i in s:
+            if i in target:
+                tmp+=i
+        for i in s:
+            if i not in target:
+                result+=i
+            else:
+                result+=tmp[-1]
+                tmp=tmp[:-1]
+        return result
