@@ -1,0 +1,16 @@
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        pre=len(word1)
+        post=len(word2)
+        shorter=min(len(word1),len(word2))
+        ind=0
+        result=""
+        while(ind<shorter):
+            result+=word1[ind]+word2[ind]
+            ind+=1
+        if (ind==pre):
+            result+=word2[ind:]
+        if (ind==post):
+            result+=word1[ind:]
+        return result
+        
