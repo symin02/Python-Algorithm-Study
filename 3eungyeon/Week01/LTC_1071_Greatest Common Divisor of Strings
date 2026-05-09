@@ -1,0 +1,17 @@
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        shorter=min(len(str1),len(str2))
+        len1=len(str1)
+        len2=len(str2)
+        ind=1
+        biggest=""
+        while(ind<=shorter+1):
+            part=str1[:ind]
+            tmp1=len1//ind
+            tmp2=len2//ind
+            if str1==tmp1*part and str2==tmp2*part:
+                biggest=part
+            ind+=1
+        return biggest
+
+        
