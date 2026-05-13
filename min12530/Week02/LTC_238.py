@@ -15,4 +15,4 @@ class Solution:
             answer[i] *= right_product
             right_product *= nums[i]
             
-        return answer
+        return answer 
