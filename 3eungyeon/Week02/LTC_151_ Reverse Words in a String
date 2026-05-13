@@ -1,0 +1,13 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        result=""
+        tmp=s.split(" ")
+        delnum=0
+        for i,item in enumerate(tmp):
+            if item=="":
+                delnum+=1
+        for i in range(delnum):
+            tmp.remove("")
+
+        result=" ".join(tmp[::-1]).strip()
+        return result
