@@ -1,0 +1,19 @@
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        tn=len(t)
+        sn=len(s)
+        si=0
+        ti=0
+        if sn==0:
+            return True
+        if tn==0:
+            return False
+        while(ti<tn):
+            if s[si]==t[ti]:
+                si+=1
+                if si==sn:
+                    return True
+            ti+=1
+        return False
+        
+        
