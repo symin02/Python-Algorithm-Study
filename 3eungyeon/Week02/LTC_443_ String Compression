@@ -1,0 +1,23 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+      
+        n=len(chars)
+        tmp=0
+        left=0
+        right=0
+        while(left<=n-1): 
+            while(right!=n-1 and chars[right]==chars[right+1]):
+                right+=1
+            chars[tmp]=chars[left]
+            tmp+=1
+  
+            if left!=right:    
+                for i in str(right-left+1):
+                    chars[tmp]=i
+                    tmp+=1
+            left=right+1
+            right=right+1
+
+        return tmp
+
+        
