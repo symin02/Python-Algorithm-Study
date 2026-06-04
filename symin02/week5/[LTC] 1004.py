@@ -1,7 +1,7 @@
 class Solution:
     def longestOnes(self, nums: list[int], k: int) -> int:
         zeros_cnt = 0  # 현재 구간 안의 0의 개수
-        max_cnt = 0  # 조건을 만족하는 최대 길이
+        max_count = 0  # 조건을 만족하는 최대 길이
         left = 0
         
         # for문으로 오른쪽 값을 하나씩 현재 구간에 포함시킴
@@ -17,6 +17,6 @@ class Solution:
                 
             # 현재 구간 길이 = right - left + 1(현재 크기)
             current_length = right - left + 1
-            max_cnt = max(max_cnt, current_length)
+            max_count = max(max_count, current_length)
             
-        return max_cnt
+        return max_count
