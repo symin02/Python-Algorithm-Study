@@ -1,0 +1,20 @@
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        lefts=[0]*len(nums)
+        rights=[0]*len(nums)
+
+
+        for i in range(len(nums)):
+            if i!=0:
+                lefts[i]=lefts[i-1]+nums[i-1]
+
+
+        for i in range(len(nums)-1,-1,-1):
+            if i!=len(nums)-1:
+                rights[i]=rights[i+1]+nums[i+1]
+
+        for i in range(len(nums)):    
+            if lefts[i]==rights[i]:
+                return i
+
+        return -1
