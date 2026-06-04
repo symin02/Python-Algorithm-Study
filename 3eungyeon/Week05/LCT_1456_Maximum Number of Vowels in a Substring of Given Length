@@ -1,0 +1,19 @@
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        check="aeiou"
+        n=0
+        for i in s[:k]:
+            if i in check:
+                n+=1
+        ma=n
+        for j in range(k,len(s)):
+            if s[j] in check:
+                n+=1
+            if s[j-k] in check:
+                n-=1
+            ma=max(ma,n)
+            if n==k:
+                return n
+        return ma
+            
+        
