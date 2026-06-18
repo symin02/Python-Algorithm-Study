@@ -1,0 +1,25 @@
+class Solution:
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        
+        nums1=list(set(nums1))
+        nums2=list(set(nums2))
+        dic={}
+        re=[]
+        print(nums1+nums2)
+        sum=nums1+nums2
+        for i in sum:
+            if i not in dic:
+                dic[i]=1
+            else:
+                dic[i]+=1
+                re.append(i)
+        res1=[]
+        res2=[]
+
+        for i in nums1:
+            if i not in re:
+                res1.append(i)
+        for i in nums2:
+            if i not in re:
+                res2.append(i)        
+        return res1,res2
