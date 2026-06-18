@@ -1,0 +1,46 @@
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        n = len(asteroids)
+        stack = []
+        delete = []
+
+        for i, v in enumerate(asteroids):
+
+            # 양수면 충돌 후보로 stack에 저장
+            if asteroids[i] > 0:
+                stack.append(i)
+
+            # 음수이고, 앞에 살아 있는 양수가 있으면 충돌
+            elif asteroids[i] < 0:
+
+                while stack and stack[-1] not in delete:
+                    j = stack[-1]
+
+                    if asteroids[j] <= 0:
+                        break
+
+                    if abs(asteroids[j]) > abs(asteroids[i]):
+                        # 왼쪽 양수가 더 큼 -> 현재 음수 삭제
+                        delete.append(i)
+                        break
+
+                    elif abs(asteroids[j]) < abs(asteroids[i]):
+                        # 현재 음수가 더 큼 -> 왼쪽 양수 삭제
+                        delete.append(j)
+                        stack.pop()
+          
+
+                    else:
+                        # 크기가 같음 -> 둘 다 삭제
+                        delete.append(j)
+                        delete.append(i)
+                        stack.pop()
+                        break
+
+        delete = list(set(delete))
+        delete.sort(reverse=True)
+
+        for i in delete:
+            asteroids.pop(i)
+
+        return asteroids

@@ -1,0 +1,25 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        tmp = ""
+        tmpn = ""
+
+        for v in s:
+            if v.isdigit():
+                tmpn += v
+
+            elif v == "[":
+                # 현재까지 만든 문자열과 반복 횟수 저장
+                stack.append((tmp, int(tmpn)))
+                tmp = ""
+                tmpn = ""
+
+            elif v == "]":
+                pre, repeat = stack.pop()
+                print()
+                tmp = pre + tmp * repeat
+
+            elif v.isalpha():
+                tmp += v
+
+        return tmp

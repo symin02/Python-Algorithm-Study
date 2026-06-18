@@ -1,0 +1,30 @@
+import copy
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+
+        #열의 원소 tmp에 담기
+        n=len(grid[0])
+        tmp=[[] for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                tmp[j].append(grid[i][j])
+        result=0
+        tmpd={}
+        tmp2=copy.deepcopy(tmp)
+
+        #tmp2에 중복 제거
+        for i in range(n):
+            if tmp[i] in tmp[i+1:]:
+                tmp2.remove(tmp[i])
+
+        #원소의 중복 갯수 세기
+        for i in range(len(tmp2)):
+            tmpd[i]=tmp.count(tmp2[i])
+
+        #서로 같은 열과 행 갯수 세기
+        for i in grid:
+            if i in tmp:
+                num=tmp2.index(i)
+                result+=tmpd[num]
+    
+        return result
