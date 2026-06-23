@@ -1,0 +1,20 @@
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        word1d={}
+        word2d={}
+        for i in word1:
+            if i in word1d:
+                word1d[i]+=1
+            else:
+                word1d[i]=1
+
+        for i in word2:
+            if i in word2d:
+                word2d[i]+=1
+            else:
+                word2d[i]=1
+        
+        result1=list(word1d.values())
+        result2=list(word2d.values())
+        result1.sort()
+        result2.sort()
