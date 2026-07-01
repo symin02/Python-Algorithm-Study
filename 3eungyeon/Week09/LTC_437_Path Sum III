@@ -1,0 +1,46 @@
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+  
+        n=0
+        result=[]
+
+        def findsum(result,targetSum):
+            sumn=result[-1]
+            num=len(result)-2
+            repeat=0
+            check=False
+            if sumn==targetSum:
+                repeat+=1
+                check=True
+            while(num>=0) or (result[num]==0 and num>=0):
+                sumn+=result[num]
+                if sumn==targetSum:
+                    check=True
+                    repeat+=1
+    
+                num-=1
+            # print(result,sumn,repeat,check)
+            return check, repeat
+            
+
+        def whoismax(root,targetSum):
+            nonlocal n
+            nonlocal result
+
+
+            if root is None:
+                return n
+
+            result.append(root.val)
+            boolean,repeat=findsum(result,targetSum)
+            if boolean:
+                # print(result,root.val)
+                n+=repeat
+                
+            whoismax(root.left,targetSum)
+            whoismax(root.right,targetSum)
+            result.pop()
+            # print("last",result,n)
+            return n
+        
+        return whoismax(root,targetSum)

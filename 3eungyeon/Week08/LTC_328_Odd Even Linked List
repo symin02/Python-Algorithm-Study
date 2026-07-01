@@ -1,0 +1,67 @@
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            return head
+
+        now=head
+        len=1
+        while (now.next!=None):
+            now=now.next
+            len+=1
+
+
+        now=head
+        n=1
+        first=head
+        second=head.next
+
+        if len%2==1:
+            while (now.next!=None):
+                nextnode=now.next
+                if n%2==1:
+                    now.next=now.next.next
+                else:
+                    now.next=now.next.next
+                now=nextnode
+                n+=1
+            now.next=second
+            
+        
+        else:
+            while (now.next!=None):
+                nextnode=now.next
+                if n%2==1:
+                    if nextnode.next==None:
+                        now.next=second
+                    else:
+                        now.next=now.next.next
+
+                else:
+                    now.next=now.next.next
+                now=nextnode
+                n+=1
+          
+        return head
+         
+        
+# 최적 풀이
+# class Solution:
+#     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         if head is None or head.next is None:
+#             return head
+
+#         odd = head              # 1
+#         even = head.next        # 2
+#         even_head = even        # 나중에 붙일 짝수 시작점
+
+#         while even is not None and even.next is not None:
+#             odd.next = even.next
+#             odd = odd.next
+
+#             even.next = odd.next
+#             even = even.next
+
+#         odd.next = even_head
+
+#         return head
+        

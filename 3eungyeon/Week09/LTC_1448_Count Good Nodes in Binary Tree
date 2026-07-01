@@ -1,0 +1,49 @@
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        n=0
+        result=[]
+
+   
+        def whoismax(root):
+            nonlocal n
+            nonlocal result
+
+
+            if root is None:
+                return n
+
+            result.append(root.val)
+
+            if max(result)==result[-1]:
+                # print(result,root.val)
+                n+=1
+                
+            whoismax(root.left)
+            whoismax(root.right)
+            result.pop()
+            # print("last",result,n)
+            return n
+        
+        return whoismax(root)
+        
+
+"""
+최적 풀이
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        def dfs(node, max_val):
+            if node is None:
+                return 0
+
+            count = 0
+
+            if node.val >= max_val:
+                count = 1
+
+            max_val = max(max_val, node.val)
+
+            return count + dfs(node.left, max_val) + dfs(node.right, max_val)
+
+        return dfs(root, root.val)
+
+"""
