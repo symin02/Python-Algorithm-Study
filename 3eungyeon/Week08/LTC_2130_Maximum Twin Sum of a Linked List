@@ -1,0 +1,54 @@
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        now=head
+        n=0
+        tmp=[]
+        while (now!=None):
+            tmp.append(now.val)
+            now=now.next
+            n+=1
+        j=0
+        for i in range(n-1,n//2-1,-1):
+            print(i,j)
+            tmp[j]+=tmp[i]
+            j+=1
+ 
+        return max(tmp)
+
+
+"""
+최적 풀이
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        slow = head
+        fast = head
+
+        # 1. 중간 지점 찾기
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # 2. 뒤 절반 뒤집기
+        prev = None
+        now = slow
+
+        while now:
+            next_node = now.next
+            now.next = prev
+            prev = now
+            now = next_node
+
+        # prev가 뒤집힌 뒤 절반의 head
+        # 3. 앞 절반과 뒤 절반 더하면서 최댓값 구하기
+        max_sum = 0
+        first = head
+        second = prev
+
+        while second:
+            max_sum = max(max_sum, first.val + second.val)
+            first = first.next
+            second = second.next
+
+        return max_sum
+
+"""        
