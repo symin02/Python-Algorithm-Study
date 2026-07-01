@@ -1,0 +1,18 @@
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None:
+            return None
+        now=head
+        n=1
+        tmp=[]
+        
+        while (now!=None):
+            tmp.append(now)
+            now=now.next
+
+        for i in range(len(tmp) - 1, 0, -1):
+            tmp[i].next = tmp[i - 1]
+
+        tmp[0].next = None
+
+        return tmp[-1]
