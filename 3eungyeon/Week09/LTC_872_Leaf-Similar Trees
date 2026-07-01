@@ -1,0 +1,25 @@
+class Solution:
+
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        result1=[]
+        result2=[]
+        
+            
+        def findleaf(root):
+            result=[]
+            if root is None:
+                return []
+            if ((root.left == None or root.left == "null" )and (root.right == None or root.right == "null")):
+                result.append(root.val)
+                return result
+            
+            result+=findleaf(root.left)
+            result+=findleaf(root.right)
+            return result
+        result1=findleaf(root1)
+        result2=findleaf(root2)
+    
+        if result1==result2:
+            return True
+        else:
+            return False
