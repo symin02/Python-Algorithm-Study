@@ -1,0 +1,19 @@
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        now=head
+        n=1
+        while (now.next!=None):
+            now=now.next
+            n+=1
+        
+        mid=n//2
+        n=0
+        now=head
+        
+        while (n<mid-1):
+            now=now.next
+            n+=1
+        if now.next==None:
+            return None
+        now.next=now.next.next
+        return head
