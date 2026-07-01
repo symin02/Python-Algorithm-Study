@@ -1,0 +1,61 @@
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+        
+        r=0
+        d=0
+        i=0
+
+        while(1):
+            
+            n=len(senate)
+
+            # i가 증가하다가 전체 배열과 숫자가 같아지면 i=0으로 초기화한다.
+            if i==n:
+                i=0
+                # 이때 r과 d가 하나만 남았다면 return으로 무한 루프를 종료한다.
+                rn=senate.count("R")
+                dn=senate.count("D")
+                if rn ==0 or dn ==0:
+                    if rn>dn:
+                        return "Radiant"
+                    else:
+                        return "Dire"
+        
+            # 만약 i가 r이라면
+            if senate[i]=="R":
+                r+=1
+                # i이후의 값들 중에서 d가 있는지 find한다
+                ti=senate[i+1:].find("D")
+                #없으면 
+                if ti==-1:
+                    # i 이전의 값들 중에 d가 있는지 find한다
+                    ti=senate[:i+1].find("D")
+                    # 만약 여기서 없다면 i+=1을 하고 뒤에를 무시하고 while문을 진행(=continue)
+                    if ti==-1:
+                        i+=1
+                        continue
+                    # i이전에 값이 있으면 i의 값이 증가하면 안되므로 -1을 한다.
+                    else:
+                        i-=1
+                # i이후의 값들 중에서 인덱스를 구했으므로 i+1을 더해서 i이전의 값들을 채워 인덱스를 맞춘다.
+                else:
+                    ti+=(i+1)
+                # 찾은 인덱스 값을 지운다
+                senate=senate[:ti]+senate[ti+1:]
+
+            # 이하 동일         
+            else:
+                d+=1
+                ti=senate[i+1:].find("R")
+                if ti==-1:
+                    ti=senate[:i+1].find("R")
+                    if ti==-1:
+                        i+=1
+                        continue
+                    else:
+                        i-=1
+                else:
+                    ti+=(i+1)
+                senate=senate[:ti]+senate[ti+1:]
+
+            i+=1  
