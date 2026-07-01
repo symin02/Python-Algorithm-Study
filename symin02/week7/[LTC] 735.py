@@ -5,7 +5,7 @@ class Solution:
         stack = []
         
         for a in asteroids:
-            # 스택이 비어있거나, 양수(오) 소행성이면 ㄱㅊ으니까 일단 넣음!
+            # 스택이 비어있거나, 양수(오) 소행성이면 ㄱㅊ으니까 일단 넣음
             if not stack or a > 0:
                 stack.append(a)
             else:
