@@ -1,0 +1,30 @@
+class Solution:
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
+        maxn = 0
+
+        def findlongest(root, side, length):
+            nonlocal maxn
+
+            if root is None:
+                return
+
+            maxn = max(maxn, length)
+
+            if side == "left":
+                # 다음은 오른쪽으로 가야 ZigZag 이어짐
+                findlongest(root.right, "right", length + 1)
+
+                # 왼쪽으로 가면 ZigZag 끊기고 새로 시작
+                findlongest(root.left, "left", 1)
+
+            else:
+                # 다음은 왼쪽으로 가야 ZigZag 이어짐
+                findlongest(root.left, "left", length + 1)
+
+                # 오른쪽으로 가면 ZigZag 끊기고 새로 시작
+                findlongest(root.right, "right", 1)
+
+        findlongest(root.left, "left", 1)
+        findlongest(root.right, "right", 1)
+
+        return maxn
