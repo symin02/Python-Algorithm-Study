@@ -1,0 +1,33 @@
+# import dequeue from collection
+import math
+class Solution:
+    def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
+        y=len(maze)
+        x=len(maze[0])
+        dx=[0,0,1,-1]
+        dy=[1,-1,0,0]
+        queue=[[entrance[1],entrance[0]]]
+        # v[entrance[0]][entrance[1]]=1
+        v=[[0]*x for _ in range(y)]
+        d=[[math.inf]*x for _ in range(y)]
+        d[entrance[0]][entrance[1]]=0
+        while(queue!=[]):
+            nowx,nowy=queue.pop(0)
+            if v[nowy][nowx]==0:
+                v[nowy][nowx]=1
+                for i in range(4):
+                    nextx,nexty=nowx+dx[i],nowy+dy[i]
+                    if 0<=nextx<x and 0<=nexty<y and maze[nexty][nextx]==".":
+                        
+                        d[nexty][nextx]=min(d[nexty][nextx],d[nowy][nowx]+1)
+                        queue.append([nextx,nexty])
+                        if (nextx in [0,x-1] or nexty in [0,y-1]) and (v[nexty][nextx]==0):
+                            # print(v,d,nexty,nextx,v[nexty][nextx])
+                            return d[nexty][nextx]
+                            
+
+        return -1
+                            
+
+                        
+
