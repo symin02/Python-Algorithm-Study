@@ -1,0 +1,62 @@
+from typing import List
+from collections import defaultdict, deque
+
+
+class Solution:
+    def calcEquation(
+        self,
+        equations: List[List[str]],
+        values: List[float],
+        queries: List[List[str]]
+    ) -> List[float]:
+
+        graph = defaultdict(list)
+
+        # 그래프 만들기
+        for i in range(len(equations)):
+            a, b = equations[i]
+            value = values[i]
+
+            graph[a].append((b, value))
+            graph[b].append((a, 1 / value))
+
+        answer = []
+
+        # 각 쿼리마다 BFS
+        for start, end in queries:
+
+            # 둘 중 하나라도 정의되지 않은 변수
+            if start not in graph or end not in graph:
+                answer.append(-1.0)
+                continue
+
+            # 같은 변수끼리 나누기
+            if start == end:
+                answer.append(1.0)
+                continue
+
+            queue = deque()
+            queue.append((start, 1.0))
+
+            visited = set()
+            visited.add(start)
+
+            result = -1.0
+
+            while queue:
+                now, current_value = queue.popleft()
+
+                if now == end:
+                    result = current_value
+                    break
+
+                for next_node, weight in graph[now]:
+                    if next_node not in visited:
+                        visited.add(next_node)
+                        queue.append(
+                            (next_node, current_value * weight)
+                        )
+
+            answer.append(result)
+
+        return answer
