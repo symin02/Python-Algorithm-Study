@@ -1,0 +1,43 @@
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        
+        y=len(grid)
+        x=len(grid[0])
+        dx=[0,0,1,-1]
+        dy=[1,-1,0,0]
+        v=[[0]*x for _ in range(y)]
+        d=[[math.inf]*x for _ in range(y)]
+        start=[]
+        for i in range(y):
+            for j in range(x):
+                if grid[i][j]==0:
+                    v[i][j]=1
+                if grid[i][j]==2:
+                    start.append((j,i))
+        for i in start:
+            queue=[(i[0],i[1])]
+            d[i[1]][i[0]]=0
+            v2=[[0]*x for _ in range(y)]
+            while(queue!=[]):
+                nowx,nowy=queue.pop(0)
+                if v2[nowy][nowx]==0:
+                    v[nowy][nowx]=1
+                    v2[nowy][nowx]=1
+                    for i in range(4):
+                        nextx,nexty=nowx+dx[i],nowy+dy[i]
+                        if (0<=nextx<x and 0<=nexty<y) and grid[nexty][nextx]!=0:
+                            
+                            d[nexty][nextx]=min(d[nexty][nextx],d[nowy][nowx]+1)
+                            queue.append([nextx,nexty])
+                    
+                            
+        for i in v:
+            if i.count(0)!=0:
+                return -1
+        maxv=0
+        for i in range(y):
+            for j in range(x):
+                if d[i][j]!=math.inf:
+                    maxv=max(d[i][j],maxv)
+        return maxv
+                         

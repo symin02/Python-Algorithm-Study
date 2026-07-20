@@ -1,0 +1,32 @@
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n=len(isConnected)
+        
+        graph=[[] for _ in range(n)]
+
+        for i in range(n):
+            for j in range(n):
+                if i!=j and isConnected[i][j]==1:
+                    graph[i].append(j)
+                    # graph[j].append(i)
+        print(graph)
+        check=0
+        v=[0]*n
+        for j in range(n): 
+            
+            if v[j]==0:
+                check+=1 
+                stack=[j]
+                
+                # v[0]=1
+                
+                while stack!=[]:
+                    now=stack.pop()
+                    if v[now]==0:
+                        v[now]=1
+                        for i in graph[now]:
+                            if v[i]==0:
+                                # v[i]=1
+                                stack.append(i)
+        
+        return check
